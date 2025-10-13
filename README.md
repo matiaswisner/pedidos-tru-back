@@ -5,7 +5,7 @@ Este repositorio contiene el código y recursos para el desarrollo frontend de n
 ## Integrantes del proyecto
 
 - **Sebastián Peralta** - Desarrolladora Bakend.
-- **Demiá Ferreyra** - Encargado de Frontend.
+- **Demián Ferreyra** - Encargado de Frontend.
 - **Brisa Nieva** - Encargada de Documentación y Testing.
 
 ## Tecnologías Usada En El Proyecto
