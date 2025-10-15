@@ -4,8 +4,8 @@ Este repositorio contiene el código y recursos para el desarrollo backen de nue
 
 ## Integrantes del proyecto
 
-- **Sebastián Peralta** - Desarrollador de Backend. Encargado en los servidores de bases de datos para recuperar o modificar datos relevantes.
-- **Demián Ferreyra** - Desarrollador de Frontend. Encargado de la interfaz de usuarios para que puedan interactuar con la Aplicación (Interfaz Gráfica).
+- **Sebastián Peralta** - Desarrollador Backend. Encargado en los servidores de bases de datos para recuperar o modificar datos relevantes.
+- **Demián Ferreyra** - Desarrollador Frontend. Encargado de la interfaz de usuarios para que puedan interactuar con la Aplicación (Interfaz Gráfica).
 - **Brisa Nieva** - Encargada de Documentación y Testing (conectar frontend con backend).
 
 ## Tecnologías Usada En El Proyecto
