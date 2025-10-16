@@ -1,29 +1,18 @@
-//CorsConfig.java
 package com.matias.orders_api.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
-public class CorsConfig {
+@Configuration // Indica a Spring que esta clase es de configuración
+public class CorsConfig implements WebMvcConfigurer {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        // 🔹 Permite cualquier origen (sin usar "*")
-                        .allowedOriginPatterns("*")
-                        // 🔹 Métodos HTTP permitidos
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        // 🔹 Permite todos los headers
-                        .allowedHeaders("*")
-                        // 🔹 Habilita cookies/autenticación cruzada
-                        .allowCredentials(true);
-            }
-        };
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // Aplica esta configuración a TODAS las rutas de la API
+                .allowedOriginPatterns("*") // Permite el acceso desde cualquier origen (flexible en desarrollo)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite los métodos HTTP comunes
+                .allowedHeaders("*") // Permite cualquier cabecera (incluyendo la de Autorización)
+                .allowCredentials(true); // <--- SOLUCIÓN: Deshabilita el manejo de credenciales para evitar el error con el comodín (*)
     }
 }

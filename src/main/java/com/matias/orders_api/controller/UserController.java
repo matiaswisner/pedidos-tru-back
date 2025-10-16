@@ -28,7 +28,7 @@ public class UserController {
                 return ResponseEntity.badRequest().body("El campo 'email' es obligatorio.");
             }
 
-            // ⚠️ Desactivar temporalmente la validación si el método no existe o falla
+            // ⚠️ Desactivar temporalmente la validación si el mètodo no existe o falla
             if (appUserRepository.existsByEmail(user.getEmail())) {
                 return ResponseEntity.badRequest().body("Ya existe un usuario con ese email.");
             }

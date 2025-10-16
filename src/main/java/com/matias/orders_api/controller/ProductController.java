@@ -1,7 +1,6 @@
 //ProductController.java
 package com.matias.orders_api.controller;
 
-import com.matias.orders_api.entity.Business;
 import com.matias.orders_api.entity.Product;
 import com.matias.orders_api.repository.BusinessRepository;
 import com.matias.orders_api.repository.ProductRepository;
@@ -13,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "*") // 🔹 Permite peticiones desde cualquier origen
 public class ProductController {
 
     private final ProductRepository productRepository;

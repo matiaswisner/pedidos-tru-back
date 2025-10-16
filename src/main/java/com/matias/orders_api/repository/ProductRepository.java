@@ -2,7 +2,7 @@
 package com.matias.orders_api.repository;
 
 import com.matias.orders_api.entity.Product;
-import com.matias.orders_api.entity.Business;
+import com.matias.orders_api.controller.Business;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
