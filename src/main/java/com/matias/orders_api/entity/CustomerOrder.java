@@ -3,7 +3,6 @@ package com.matias.orders_api.entity;
 
 import com.matias.orders_api.enums.OrderStatus;
 import com.matias.orders_api.enums.PaymentMethod;
-import com.matias.orders_api.controller.Business;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

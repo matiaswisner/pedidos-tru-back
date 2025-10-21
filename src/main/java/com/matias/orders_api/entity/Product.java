@@ -1,7 +1,6 @@
 //Product.java
 package com.matias.orders_api.entity;
 
-import com.matias.orders_api.controller.Business;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 import java.time.Instant;

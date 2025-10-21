@@ -9,12 +9,14 @@ import lombok.Setter;
 
 import java.time.Instant;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "businesses")
-@Getter // Genera todos los getters
-@Setter // Genera todos los setters
-@NoArgsConstructor // 👈 CORRECCIÓN: Genera el constructor vacío obligatorio
-public class Business {
+public class BusinessController {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
