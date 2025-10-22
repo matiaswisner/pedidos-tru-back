@@ -1,4 +1,3 @@
-//ProductController.java
 package com.matias.orders_api.controller;
 
 import com.matias.orders_api.entity.Business;
@@ -23,7 +22,7 @@ public class ProductController {
         this.businessRepository = businessRepository;
     }
 
-    // 🔹 NUEVO: Listar todos los productos
+    //  Listar todos los productos
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productRepository.findAll();
@@ -33,8 +32,9 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    // 🔹 Crear producto con imágenes
+    //  Crear producto con imágenes
     @PostMapping
+    // Spring mapeará automáticamente 'category' del JSON al objeto 'product' recibido
     public ResponseEntity<Product> createProduct(@RequestParam Long businessId, @RequestBody Product product) {
         Optional<Business> business = businessRepository.findById(businessId);
         if (business.isEmpty()) {
@@ -51,7 +51,7 @@ public class ProductController {
         return ResponseEntity.ok(saved);
     }
 
-    // 🔹 Listar todos los productos de un negocio
+    //  Listar todos los productos de un negocio
     @GetMapping("/business/{businessId}")
     public ResponseEntity<List<Product>> getProductsByBusiness(@PathVariable Long businessId) {
         Optional<Business> business = businessRepository.findById(businessId);
@@ -61,7 +61,7 @@ public class ProductController {
         return ResponseEntity.ok(productRepository.findByBusiness(business.get()));
     }
 
-    // 🔹 Obtener producto por ID
+    //  Obtener producto por ID
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return productRepository.findById(id)
@@ -69,21 +69,30 @@ public class ProductController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // 🔹 Actualizar producto
+    //  Actualizar producto (CON CAMBIO PARA INCLUIR CATEGORÍA)
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updated) {
         return productRepository.findById(id).map(product -> {
+
+            // Campos existentes
             product.setName(updated.getName());
             product.setPrice(updated.getPrice());
             product.setAvailable(updated.getAvailable());
+
+            // NUEVO: Actualizar la categoría
+            // Spring mapea 'category' del JSON al 'updated' y luego lo asignamos al 'product' existente.
+            product.setCategory(updated.getCategory());
+
+            // Lógica de imágenes
             if (updated.getImages() != null && updated.getImages().size() <= 6) {
                 product.setImages(updated.getImages());
             }
+
             return ResponseEntity.ok(productRepository.save(product));
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // 🔹 Eliminar producto
+    // Eliminar producto
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         if (!productRepository.existsById(id)) {
@@ -93,7 +102,7 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-    // 🔹 Buscar productos por nombre (ej: "pizza")
+    //  Buscar productos por nombre (ej: "pizza")
     @GetMapping("/search")
     public List<Product> searchProducts(@RequestParam String name) {
         return productRepository.findByNameContainingIgnoreCase(name);

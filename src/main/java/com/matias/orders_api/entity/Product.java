@@ -1,6 +1,8 @@
 //Product.java
 package com.matias.orders_api.entity;
 
+import com.matias.orders_api.enums.ProductCategory; // 👈 1. IMPORTACIÓN CRUCIAL DEL ENUM
+
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 import java.time.Instant;
@@ -20,13 +22,17 @@ public class Product {
     private String name;
 
     @Column(length = 1000)
-    private String description;  // 👉 Nueva descripción del producto
+    private String description;
 
     private Double price;
 
     private Boolean available = true;
 
     private Instant createdAt = Instant.now();
+
+    // 👈 2. DECLARACIÓN DEL CAMPO CATEGORÍA
+    @Enumerated(EnumType.STRING)
+    private ProductCategory category;
 
     // Relación: un negocio tiene muchos productos
     @ManyToOne
@@ -39,7 +45,7 @@ public class Product {
     @Column(name = "image_url")
     private List<String> images = new ArrayList<>();
 
-    // Getters y setters
+    // Getters y setters existentes...
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -63,4 +69,8 @@ public class Product {
 
     public List<String> getImages() { return images; }
     public void setImages(List<String> images) { this.images = images; }
+
+    // 👈 3. NUEVOS GETTER Y SETTER QUE FALTABAN
+    public ProductCategory getCategory() { return category; }
+    public void setCategory(ProductCategory category) { this.category = category; }
 }
